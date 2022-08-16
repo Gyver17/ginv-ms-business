@@ -21,7 +21,10 @@ export const databaseProviders = [
         default:
           config = databaseConfig.development;
       }
-      const sequelize = new Sequelize(config);
+      const sequelize = new Sequelize({
+        ...config,
+        models: [__dirname + '/**/*.model.ts'],
+      });
       //   sequelize.addModels([Post]);
       return sequelize;
     },
